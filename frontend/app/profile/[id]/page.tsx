@@ -1,15 +1,14 @@
 "use client";
 
-export const instant = false;
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Heart, MessageCircle, Repeat2, Bookmark } from "lucide-react";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
 
-export default function ProfilePage() {
+function ProfileContent() {
   const params = useParams();
   const router = useRouter();
   const [user, setUser] = useState<any>(null);
@@ -119,5 +118,13 @@ export default function ProfilePage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function ProfilePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading profile...</div>}>
+      <ProfileContent />
+    </Suspense>
   );
 }

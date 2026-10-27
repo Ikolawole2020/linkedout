@@ -1,14 +1,13 @@
 "use client";
 
-export const instant = false;
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
 
-export default function EditPostPage() {
+function EditPostContent() {
   const params = useParams();
   const router = useRouter();
   const [form, setForm] = useState({ title: "", content: "", company_name: "", reason_category: "other" });
@@ -61,5 +60,13 @@ export default function EditPostPage() {
         </form>
       </main>
     </div>
+  );
+}
+
+export default function EditPostPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <EditPostContent />
+    </Suspense>
   );
 }

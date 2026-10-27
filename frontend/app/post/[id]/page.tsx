@@ -1,8 +1,7 @@
 "use client";
 
-export const instant = false;
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Heart, MessageCircle, Repeat2, ArrowLeft, Send, Bookmark } from "lucide-react";
@@ -109,7 +108,7 @@ function CommentItem({ comment, postId, token, onReply }: { comment: Comment; po
   );
 }
 
-export default function PostDetailPage() {
+function PostContent() {
   const params = useParams();
   const router = useRouter();
   const [post, setPost] = useState<Post | null>(null);
@@ -247,5 +246,13 @@ export default function PostDetailPage() {
         </section>
       </main>
     </div>
+  );
+}
+
+export default function PostDetailPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading story...</div>}>
+      <PostContent />
+    </Suspense>
   );
 }
