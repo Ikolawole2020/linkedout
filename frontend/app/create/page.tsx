@@ -26,6 +26,7 @@ export default function CreatePostPage() {
     reason_category: "other",
     is_anonymous: false,
   });
+  const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
@@ -40,13 +41,19 @@ export default function CreatePostPage() {
     setLoading(true);
     setError("");
     try {
+      const formData = new FormData();
+      formData.append("title", form.title);
+      formData.append("content", form.content);
+      formData.append("company_name", form.company_name);
+      formData.append("company_anonymous", String(form.company_anonymous));
+      formData.append("reason_category", form.reason_category);
+      formData.append("is_anonymous", String(form.is_anonymous));
+      if (image) formData.append("image", image);
+
       const res = await fetch(`${API_URL}/posts/`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(form),
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
       });
       if (res.ok) {
         router.push("/");
@@ -111,6 +118,11 @@ export default function CreatePostPage() {
                 <option key={r.value} value={r.value}>{r.label}</option>
               ))}
             </select>
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium text-zinc-700 dark:text-zinc-300">Image (optional)</label>
+            <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] || null)} className="w-full text-sm text-zinc-600 dark:text-zinc-300 file:mr-4 file:rounded-full file:border-0 file:bg-red-600 file:px-4 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-red-700" />
           </div>
 
           <div>

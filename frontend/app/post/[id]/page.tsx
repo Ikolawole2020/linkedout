@@ -36,6 +36,7 @@ interface Post {
   is_liked?: boolean;
   is_reposted?: boolean;
   is_bookmarked?: boolean;
+  image?: string;
   comments: Comment[];
 }
 
@@ -195,6 +196,7 @@ function PostContent() {
           </div>
           <h1 className="mb-4 text-2xl font-bold">{post.title}</h1>
           <p className="whitespace-pre-wrap text-zinc-700 dark:text-zinc-200 leading-relaxed">{post.content}</p>
+          {post.image && <img src={post.image} alt="" className="mt-4 max-h-96 w-full rounded-2xl object-cover" />}
 
           <div className="mt-6 flex gap-6 border-t border-zinc-200 dark:border-zinc-800 pt-4 text-zinc-500">
             <button onClick={() => handleAction("like")} className={`flex items-center gap-2 ${post.is_liked ? "text-red-500" : ""}`}>

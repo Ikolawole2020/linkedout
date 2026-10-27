@@ -24,6 +24,7 @@ interface Post {
   is_liked?: boolean;
   is_reposted?: boolean;
   is_bookmarked?: boolean;
+  image?: string;
 }
 
 const reasonLabels: Record<string, string> = {
@@ -201,6 +202,7 @@ export default function Home() {
                 <Link href={`/post/${post.id}`}>
                   <h2 className="mb-2 text-lg font-semibold hover:text-red-500">{post.title}</h2>
                   <p className="line-clamp-3 text-zinc-600 dark:text-zinc-300">{post.content}</p>
+                {post.image && <img src={post.image} alt="" className="mt-3 max-h-64 w-full rounded-xl object-cover" />}
                 </Link>
 
                 <div className="mt-4 flex items-center gap-6 text-zinc-500">
