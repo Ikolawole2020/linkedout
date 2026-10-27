@@ -44,16 +44,8 @@ export default function SettingsPage() {
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-zinc-200 dark:border-zinc-800 px-4 py-4">
-        <div className="mx-auto flex max-w-2xl items-center justify-between">
-          <Link href="/" className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white">← Back</Link>
-          <h1 className="font-semibold">Edit Profile</h1>
-          <div />
-        </div>
-      </header>
-
       <main className="mx-auto max-w-2xl px-4 py-8">
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 surface p-6">
           {message && <div className="rounded-lg bg-green-500/10 px-4 py-2 text-sm text-green-600">{message}</div>}
           <div>
             <label className="mb-1 block text-sm font-medium">First name</label>

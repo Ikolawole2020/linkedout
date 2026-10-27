@@ -1,5 +1,7 @@
 "use client";
 
+export const instant = false;
+
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -176,17 +178,9 @@ export default function PostDetailPage() {
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl px-4 py-4">
-        <div className="mx-auto flex max-w-3xl items-center gap-4">
-          <button onClick={() => router.back()} className="rounded-full p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800">
-            <ArrowLeft className="h-5 w-5" />
-          </button>
-          <h1 className="font-semibold">Story</h1>
-        </div>
-      </header>
 
       <main className="mx-auto max-w-3xl px-4 py-8">
-        <article className="mb-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-6">
+        <article className="mb-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-6 shadow-sm">
           <div className="mb-4 text-sm text-zinc-500">
             <Link href={`/profile/${post.author.id}`} className="font-medium text-zinc-900 dark:text-zinc-200 hover:underline">
               {post.is_anonymous ? "Anonymous" : post.author.username}

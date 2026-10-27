@@ -1,5 +1,7 @@
 "use client";
 
+export const instant = false;
+
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -66,17 +68,9 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl px-4 py-4">
-        <div className="mx-auto flex max-w-3xl items-center gap-4">
-          <button onClick={() => router.back()} className="rounded-full p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800">
-            <ArrowLeft className="h-5 w-5" />
-          </button>
-          <h1 className="font-semibold">{user.username}</h1>
-        </div>
-      </header>
 
       <main className="mx-auto max-w-3xl px-4 py-8">
-        <div className="mb-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-6">
+        <div className="mb-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-6 shadow-sm">
           <div className="flex items-start justify-between">
             <div>
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-600 text-2xl font-bold text-white">
@@ -112,7 +106,7 @@ export default function ProfilePage() {
             <p className="text-zinc-500">No stories yet.</p>
           ) : (
             posts.map((post: any) => (
-              <Link key={post.id} href={`/post/${post.id}`} className="block rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-5 hover:border-zinc-300 dark:hover:border-zinc-700">
+              <Link key={post.id} href={`/post/${post.id}`} className="block rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-5 shadow-sm hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-md transition">
                 <h4 className="font-semibold">{post.title}</h4>
                 <p className="mt-1 line-clamp-2 text-sm text-zinc-600 dark:text-zinc-300">{post.content}</p>
                 <div className="mt-3 flex gap-4 text-xs text-zinc-500">

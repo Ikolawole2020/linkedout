@@ -34,17 +34,12 @@ export default function NotificationsPage() {
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-zinc-200 dark:border-zinc-800 px-4 py-4">
-        <div className="mx-auto flex max-w-2xl items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-zinc-500 hover:text-zinc-900 dark:hover:text-white">
-            <ArrowLeft className="h-5 w-5" /> Back
-          </Link>
-          <h1 className="font-semibold">Notifications</h1>
-          <button onClick={markRead} className="text-sm text-red-500">Mark all read</button>
-        </div>
-      </header>
 
       <main className="mx-auto max-w-2xl px-4 py-6">
+        <div className="mb-4 flex items-center justify-between">
+          <h1 className="text-lg font-semibold">Notifications</h1>
+          <button onClick={markRead} className="text-sm font-medium text-red-600 dark:text-red-400 hover:underline">Mark all read</button>
+        </div>
         {loading ? (
           <p>Loading...</p>
         ) : notifications.length === 0 ? (

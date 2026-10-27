@@ -122,62 +122,14 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-600 font-bold text-white">
-              L
-            </div>
-            <span className="text-xl font-bold tracking-tight">Linked<span className="text-red-500">out</span></span>
-          </Link>
-
-          <div className="hidden flex-1 max-w-md mx-8 md:block">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" />
-              <input
-                type="text"
-                placeholder="Search companies or stories..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && fetchPosts()}
-                className="w-full rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 py-2 pl-10 pr-4 text-sm outline-none focus:border-red-500"
-              />
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button onClick={toggleTheme} className="rounded-full p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800">
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </button>
-            {token ? (
-              <>
-                <Link href="/bookmarks" className="rounded-full p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800">
-                  <Bookmark className="h-5 w-5" />
-                </Link>
-                <Link href="/notifications" className="rounded-full p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800">
-                  <Bell className="h-5 w-5" />
-                </Link>
-                <Link href="/create" className="flex items-center gap-1 rounded-full bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700">
-                  <Plus className="h-4 w-4" /> Share
-                </Link>
-                <Link href={`/profile/${user?.id || ""}`} className="rounded-full p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800">
-                  <User className="h-5 w-5" />
-                </Link>
-                <button onClick={logout} className="rounded-full p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800">
-                  <LogOut className="h-5 w-5" />
-                </button>
-              </>
-            ) : (
-              <>
-                <Link href="/login" className="rounded-full px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800">Log in</Link>
-                <Link href="/register" className="rounded-full bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700">Sign up</Link>
-              </>
-            )}
-          </div>
-        </div>
-      </header>
-
       <main className="mx-auto max-w-6xl px-4 py-8">
+        <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="relative flex-1">
+            <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+            <input value={search} onChange={(e) => setSearch(e.target.value)} onKeyDown={(e) => e.key === "Enter" && fetchPosts()} placeholder="Search stories, companies, reasons..." className="w-full rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 py-2.5 pl-11 pr-4 text-sm outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20" />
+          </div>
+          <button onClick={fetchPosts} className="rounded-full bg-red-600 px-6 py-2.5 text-sm font-medium text-white shadow-lg shadow-red-600/30 hover:bg-red-700 transition">Search</button>
+        </div>
         <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
           <div className="flex flex-wrap gap-2">
             <button
@@ -225,7 +177,7 @@ export default function Home() {
         ) : (
           <div className="space-y-4">
             {posts.map((post) => (
-              <article key={post.id} className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-6 transition hover:border-zinc-300 dark:hover:border-zinc-700">
+              <article key={post.id} className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-6 shadow-sm transition hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-md">
                 <div className="mb-3 flex items-start justify-between">
                   <div>
                     <div className="flex items-center gap-2 text-sm text-zinc-500">
