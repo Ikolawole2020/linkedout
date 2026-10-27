@@ -1,15 +1,13 @@
 "use client";
 
-export const instant = false;
-
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
 
-export default function CompanyPage() {
+function CompanyContent() {
   const searchParams = useSearchParams();
   const name = searchParams.get("name") || "";
   const [posts, setPosts] = useState<any[]>([]);
@@ -41,5 +39,13 @@ export default function CompanyPage() {
         )}
       </main>
     </div>
+  );
+}
+
+export default function CompanyPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading company...</div>}>
+      <CompanyContent />
+    </Suspense>
   );
 }
