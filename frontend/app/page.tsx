@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Heart, MessageCircle, Repeat2, Share2, Plus, Search, LogOut, User, Bookmark, Moon, Sun, Bell } from "lucide-react";
 import { useTheme } from "./theme-provider";
+import { PostSkeleton } from "@/components/Skeleton";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
 
@@ -164,8 +165,8 @@ export default function Home() {
 
         {loading ? (
           <div className="space-y-4">
-            {[1,2,3].map(i => (
-              <div key={i} className="animate-pulse rounded-2xl bg-zinc-100 dark:bg-zinc-900 p-6 h-48" />
+            {[1,2,3,4].map(i => (
+              <PostSkeleton key={i} />
             ))}
           </div>
         ) : posts.length === 0 ? (
