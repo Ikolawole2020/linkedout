@@ -62,7 +62,7 @@ export default function CreatePostPage() {
         setError(JSON.stringify(data));
       }
     } catch {
-      setError("Failed to create post");
+      setError("Unable to publish your story right now. Please try again.");
     }
     setLoading(false);
   };

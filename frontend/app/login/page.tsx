@@ -31,7 +31,7 @@ export default function LoginPage() {
         setError(data.detail || "Invalid credentials");
       }
     } catch {
-      setError("Network error. Is the backend running?");
+      setError("Unable to sign in right now. Please try again.");
     }
     setLoading(false);
   };

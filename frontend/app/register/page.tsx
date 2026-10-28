@@ -39,7 +39,7 @@ export default function RegisterPage() {
         setError(Object.values(data).flat().join(" ") || "Registration failed");
       }
     } catch {
-      setError("Network error");
+      setError("Unable to create your account right now. Please try again.");
     }
     setLoading(false);
   };
