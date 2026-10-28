@@ -26,7 +26,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased transition-colors`}>
+      <body className={`${inter.className} bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased transition-colors`} suppressHydrationWarning>
         <ThemeProvider>
           <Suspense fallback={<div className="h-16" />}>
             <Navbar />
